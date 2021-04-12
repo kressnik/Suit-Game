@@ -1,0 +1,51 @@
+//Function
+@import "mixins";
+//Googlr fonts
+@import url("https://fonts.googleapis.com/css?family=Heebo:regular,500,700,900&display=swap");
+//Default params
+$fontFamily: "Heebo";
+$minWidth: 990px;
+//Clear default style
+@import "null";
+
+.box {
+    margin: 0 auto;
+    margin-top: 70px;
+    text-align: center;
+    
+    &__lines {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        flex-flow: column;
+        align-items: center;
+
+    }
+    &__line {
+        font-size: 0;
+        border-left: 1px solid #000;
+        border-bottom: 1px solid #000;
+
+        &:first-child {
+            border-top: 1px solid #000;  
+        }
+    }
+    &__suit {
+        height: 60px;
+        width: 60px;
+        font-size: 40px;
+        line-height: 60px;
+        border-right: 1px solid #000;
+        cursor: pointer;
+        float: left;
+    }
+    &__suit--active,
+    &__suit:hover {
+        background-color: #000;
+        color: #fff;
+    }
+}
+.diams,
+.hearts {
+    color: red;
+}

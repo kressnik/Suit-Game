@@ -1,0 +1,10 @@
+//Подключение шрифта
+@mixin font($fontName, $fileName, $weight, $style) {
+	@font-face {
+		font-family: $fontName;
+		font-display: swap;
+		src: url("../fonts/#{$fileName}.woff") format("woff"), url("../fonts/#{$fileName}.woff2") format("woff2");
+		font-weight: #{$weight};
+		font-style: #{$style};
+	}
+}
