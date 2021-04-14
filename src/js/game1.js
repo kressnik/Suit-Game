@@ -1,18 +1,19 @@
+const ID_GAME = 'game-1';
 const SUIT_ELEMENT = 'game-box__suit';
 const ACTIVE_CLASS = 'game-box__suit--active';
 const SUIT = ['spades', 'clubs', 'diams', 'hearts'];
 
-$(`.${SUIT_ELEMENT}`).on('click', clickHandler);
+$(`#${ID_GAME} .${SUIT_ELEMENT}`).on('click', clickHandler);
 
 function clickHandler() {
-    $(`.${SUIT_ELEMENT}`).removeClass(ACTIVE_CLASS);
+    $(`#${ID_GAME} .${SUIT_ELEMENT}`).removeClass(ACTIVE_CLASS);
     const currentEl = $(this);
     const currentSuit = getSuitClass(currentEl);
 
     activateEl(currentEl, currentSuit);
 
     if($('[name="actions"]:checked').val() == 'del') {
-        $(`.${ACTIVE_CLASS}`).empty().removeClass(ACTIVE_CLASS);
+        $(`#${ID_GAME} .${ACTIVE_CLASS}`).empty().removeClass(ACTIVE_CLASS);
     }
 }
  
