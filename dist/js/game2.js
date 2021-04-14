@@ -1,15 +1,4 @@
 $(function () {
-    Object.defineProperty(
-        Object.prototype,
-        'randElement',
-        {
-            value: function () {
-                const rand = Math.floor(Math.random() * this.length);
-                return this[rand];
-            }
-        }
-    );
-
     const ID_GAME = 'game-2';
     const SUIT_ELEMENT = 'game-box__suit';
     const INPUT_QTY_LINE = 'qty-line';
@@ -116,3 +105,14 @@ $(function () {
     }
 
 });
+
+Object.defineProperty(
+    Object.prototype,
+    'randElement',
+    {
+        value: function () {
+            const rand = Math.floor(Math.random() * this.length);
+            return this[rand];
+        }
+    }
+);
