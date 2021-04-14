@@ -42,8 +42,11 @@ button,
 textarea {
 	font-family: $fontFamily;
 }
-input::-ms-clear {
-	display: none;
+// input::-ms-clear {
+// 	display: none;
+// }
+input {
+	font-size: 14px;
 }
 button {
 	cursor: pointer;

@@ -34,7 +34,7 @@ section {
 html,
 body {
   height: 100%;
-  min-width: 320px;
+  min-width: 990px;
 }
 
 body {
@@ -51,8 +51,8 @@ textarea {
   font-family: "Heebo";
 }
 
-input::-ms-clear {
-  display: none;
+input {
+  font-size: 14px;
 }
 
 button {
