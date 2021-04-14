@@ -1,5 +1,5 @@
-const SUIT_ELEMENT = 'box__suit';
-const ACTIVE_CLASS = 'box__suit--active';
+const SUIT_ELEMENT = 'game-box__suit';
+const ACTIVE_CLASS = 'game-box__suit--active';
 const SUIT = ['spades', 'clubs', 'diams', 'hearts'];
 
 $(`.${SUIT_ELEMENT}`).on('click', clickHandler);
@@ -15,7 +15,7 @@ function clickHandler() {
         $(`.${ACTIVE_CLASS}`).empty().removeClass(ACTIVE_CLASS);
     }
 }
-
+ 
 function activateEl(currentEl, currentSuit) {
     for (const element of createData(currentEl)) {
         if(currentSuit === element.class) {

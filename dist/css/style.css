@@ -34,7 +34,7 @@ section {
 html,
 body {
   height: 100%;
-  min-width: 990px;
+  min-width: 320px;
 }
 
 body {
@@ -91,13 +91,13 @@ h6 {
   font-size: inherit;
 }
 
-.box {
+.game-box {
   margin: 0 auto;
   margin-top: 70px;
   text-align: center;
 }
 
-.box__lines {
+.game-box__lines {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -115,17 +115,17 @@ h6 {
           align-items: center;
 }
 
-.box__line {
+.game-box__line {
   font-size: 0;
   border-left: 1px solid #000;
   border-bottom: 1px solid #000;
 }
 
-.box__line:first-child {
+.game-box__line:first-child {
   border-top: 1px solid #000;
 }
 
-.box__suit {
+.game-box__suit {
   height: 60px;
   width: 60px;
   font-size: 40px;
@@ -135,8 +135,8 @@ h6 {
   float: left;
 }
 
-.box__suit--active,
-.box__suit:hover {
+.game-box__suit--active,
+.game-box__suit:hover {
   background-color: #000;
   color: #fff;
 }
