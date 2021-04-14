@@ -39,7 +39,7 @@ const path = {
 		favicon: `${SOURCE_DIR}/img/favicon.{jpg,png,svg,gif,ico,webp}`,
 		html: [`${SOURCE_DIR}/*.html`, `!${SOURCE_DIR}/_*.html`],
 		css: `${SOURCE_DIR}/scss/style.scss`,
-		js: [`${SOURCE_DIR}/js/app.js`, `${SOURCE_DIR}/js/game1.js`, `${SOURCE_DIR}/js/game2.js`],
+		js: [`${SOURCE_DIR}/js/app.js`, `${SOURCE_DIR}/js/game1.js`, `${SOURCE_DIR}/js/game2.js`, `${SOURCE_DIR}/js/game3.js`],
 		images: [`${SOURCE_DIR}/img/**/*.{jpg,png,svg,gif,ico,webp}`, '!**/favicon.*'],
     	fonts: `${SOURCE_DIR}/fonts/*.ttf`,
 		videos: `${SOURCE_DIR}/videos/*.*`

@@ -1,3 +1,5 @@
+'use strict';
+
 $(function () {
     const ID_GAME = 'game-2';
     const SUIT_ELEMENT = 'game-box__suit';
