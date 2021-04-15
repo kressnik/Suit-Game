@@ -35,6 +35,11 @@ $(function () {
         const getSuit = grid.getNextElement();
         gridModificator.changeElement(getSuit());
         gridDraw.printNextElement(getSuit());
+
+        if (gridModificator.hasAllDuplicate()) {
+            resetGame();
+            alert('You win!!!');
+        }
     }
 
     function changeInputHandler() {
@@ -43,21 +48,23 @@ $(function () {
         resetGame(newGrid);
     }
 
+    function getInputData() {
+        const qtyLine = $(`${dataDraw.boxId} ${dataDraw.inputLine}`).val();
+        const qtyElement = $(`${dataDraw.boxId} ${dataDraw.inputElement}`).val();
+
+        return { qtyLine, qtyElement }
+    }
+
     function resetGame(newGrid) {
-        newGrid = newGrid.type === 'click' ? grid.reset() : newGrid;
+        if (!newGrid) { newGrid = grid.reset() }
+        else { newGrid = newGrid.type === 'click' ? grid.reset() : newGrid; }
+
         gridModificator.update(newGrid);
         gridDraw.update(newGrid);
         gridDraw.clearBody();
         gridDraw.create();
 
         $(`${dataDraw.boxId} ${dataDraw.elementClass}`).on('click', clickHandler);
-    }
-
-    function getInputData() {
-        const qtyLine = $(`${dataDraw.boxId} ${dataDraw.inputLine}`).val();
-        const qtyElement = $(`${dataDraw.boxId} ${dataDraw.inputElement}`).val();
-
-        return { qtyLine, qtyElement }
     }
 
     $(`${dataDraw.boxId} ${dataDraw.elementClass}`).on('click', clickHandler);
@@ -130,6 +137,10 @@ class GridModificator {
     update(grid) {
         if (!grid) { console.error('Not new grid') }
         else { this.grid = grid; }
+    }
+
+    hasAllDuplicate() {
+        return this.grid.map(e => new Set(e)).filter(e => e.size > 1).length === 0;
     }
 
     dfs(selectedKeyLine, selectedKeyElement) {
