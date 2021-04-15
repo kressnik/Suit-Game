@@ -8,9 +8,13 @@ $minWidth: 990px;
 //Clear default style
 @import "null";
 
+h1 {
+    font-size: 20px;
+    padding: 5px;
+}
 .game-box {
     margin: 0 auto;
-    margin-top: 70px;
+    padding: 30px;
     text-align: center;
 
     &__lines {
@@ -19,7 +23,6 @@ $minWidth: 990px;
         flex-wrap: nowrap;
         flex-flow: column;
         align-items: center;
-
     }
     &__line {
         font-size: 0;
@@ -27,7 +30,7 @@ $minWidth: 990px;
         border-bottom: 1px solid #000;
 
         &:first-child {
-            border-top: 1px solid #000;  
+            border-top: 1px solid #000;
         }
     }
     &__suit {
@@ -43,6 +46,14 @@ $minWidth: 990px;
     &__suit:hover {
         background-color: #000;
         color: #fff;
+    }
+    &__reset-game {
+        padding: 2px 8px;
+        margin: 2px;
+        border-radius: 3px;
+    }
+    &__reset-game:hover {
+        box-shadow: 0px 1px 5px rgb(154, 147, 140);
     }
 }
 .diams,

@@ -1,40 +1,73 @@
 'use strict';
 $(function () {
-    const grid = new Grid();
-    const gridArr = grid.create();
-    const getSuit = grid.getNextElement();
-    const gridModificator = new GridModificator(gridArr, getSuit());
-
-
     const dataDraw = {
-        grid: gridArr,
+        grid: [],
         boxId: '#game-3',
         boxBody: '.game-box__lines',
         lineClass: '.game-box__line',
         elementClass: '.game-box__suit',
-        boxElement: '.game-box__next-element'
+        inputLine: '[name="qty-line"]',
+        inputElement: '[name="qty-suit"]',
+        boxElement: '.game-box__next-element',
+        resetBtn: '.game-box__reset-game'
     }
+
+
+    const gridSize = getInputData();
+    const grid = new Grid(gridSize);
+    const gridArr = grid.create();
+    dataDraw.grid = gridArr;
+
+    const getSuit = grid.getNextElement();
+    const gridModificator = new GridModificator(gridArr, getSuit());
+
     const gridDraw = new GridDraw(dataDraw);
     gridDraw.printNextElement(getSuit());
     gridDraw.clearBody();
     gridDraw.create();
 
     function clickHandler() {
-        let line = $(this).parent().data('key-line');
-        let element = $(this).data('key-element');
-        let newGrid = gridModificator.change(line, element);
+        const line = $(this).parent().data('key-line');
+        const element = $(this).data('key-element');
+        const newGrid = gridModificator.change(line, element);
         gridDraw.update(newGrid);
 
-        let getSuit = grid.getNextElement();
+        const getSuit = grid.getNextElement();
         gridModificator.changeElement(getSuit());
         gridDraw.printNextElement(getSuit());
     }
 
-    $(`#game-3 .game-box__suit`).on('click', clickHandler);
+    function changeInputHandler() {
+        const gridSize = getInputData();
+        const newGrid = grid.updateSize(gridSize);
+        resetGame(newGrid);
+    }
+
+    function resetGame(newGrid) {
+        newGrid = newGrid.type === 'click' ? grid.reset() : newGrid;
+        gridModificator.update(newGrid);
+        gridDraw.update(newGrid);
+        gridDraw.clearBody();
+        gridDraw.create();
+
+        $(`${dataDraw.boxId} ${dataDraw.elementClass}`).on('click', clickHandler);
+    }
+
+    function getInputData() {
+        const qtyLine = $(`${dataDraw.boxId} ${dataDraw.inputLine}`).val();
+        const qtyElement = $(`${dataDraw.boxId} ${dataDraw.inputElement}`).val();
+
+        return { qtyLine, qtyElement }
+    }
+
+    $(`${dataDraw.boxId} ${dataDraw.elementClass}`).on('click', clickHandler);
+    $(`${dataDraw.boxId} ${dataDraw.inputLine}`).on('change', changeInputHandler);
+    $(`${dataDraw.boxId} ${dataDraw.inputElement}`).on('change', changeInputHandler);
+    $(`${dataDraw.boxId} ${dataDraw.resetBtn}`).on('click', resetGame);
 });
 
 class Grid {
-    constructor(qtyLine = null, qtyElement = null, elementArr = null) {
+    constructor({ qtyLine = null, qtyElement = null, elementArr = null }) {
         this.grid = [];
         this.qtyLine = qtyLine || 7;
         this.qtyElement = qtyElement || 6;
@@ -56,8 +89,15 @@ class Grid {
         return JSON.parse(JSON.stringify(this.grid));
     }
 
-    nextElement() {
-        return this.elementArr.randElement();
+    reset() {
+        return this.create();
+    }
+
+    updateSize({ qtyLine, qtyElement }) {
+        this.qtyLine = qtyLine || this.qtyLine;
+        this.qtyElement = qtyElement || this.qtyElement;
+
+        return this.create();
     }
 
     getNextElement() {
@@ -85,6 +125,11 @@ class GridModificator {
 
     changeElement(element) {
         this.changeToElement = element;
+    }
+
+    update(grid) {
+        if (!grid) { console.error('Not new grid') }
+        else { this.grid = grid; }
     }
 
     dfs(selectedKeyLine, selectedKeyElement) {
@@ -116,18 +161,18 @@ class GridModificator {
 }
 
 class GridDraw {
-    constructor({ 
-        grid = null, 
-        boxId = null, 
+    constructor({
+        grid = null,
+        boxId = null,
         boxBody = null,
-        lineClass = null, 
+        lineClass = null,
         elementClass = null,
         boxElement = null
     }) {
         this.grid = grid;
         this.boxId = boxId;
         this.boxBody = boxBody,
-        this.lineClass = lineClass;
+            this.lineClass = lineClass;
         this.elementClass = elementClass;
         this.boxElement = boxElement;
     }

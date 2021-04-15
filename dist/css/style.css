@@ -91,9 +91,14 @@ h6 {
   font-size: inherit;
 }
 
+h1 {
+  font-size: 20px;
+  padding: 5px;
+}
+
 .game-box {
   margin: 0 auto;
-  margin-top: 70px;
+  padding: 30px;
   text-align: center;
 }
 
@@ -139,6 +144,17 @@ h6 {
 .game-box__suit:hover {
   background-color: #000;
   color: #fff;
+}
+
+.game-box__reset-game {
+  padding: 2px 8px;
+  margin: 2px;
+  border-radius: 3px;
+}
+
+.game-box__reset-game:hover {
+  -webkit-box-shadow: 0px 1px 5px #9a938c;
+          box-shadow: 0px 1px 5px #9a938c;
 }
 
 .diams,
